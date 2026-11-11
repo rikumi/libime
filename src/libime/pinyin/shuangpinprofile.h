@@ -11,6 +11,7 @@
 #include <memory>
 #include <set>
 #include <string>
+#include <vector>
 #include <fcitx-utils/macros.h>
 #include <libime/pinyin/libimepinyin_export.h>
 #include <libime/pinyin/pinyincorrectionprofile.h>
@@ -45,6 +46,9 @@ public:
                               const PinyinCorrectionProfile *correctionProfile);
 
     FCITX_DECLARE_VIRTUAL_DTOR_COPY_AND_MOVE(ShuangpinProfile)
+
+    // Triples: key, compound initials, compound finals. No fuzzy/correction aliases.
+    std::vector<std::string> keyHints() const;
 
     const TableType &table() const;
     const ValidInputSetType &validInput() const;
