@@ -565,6 +565,9 @@ void checkKeyHints() {
     FCITX_ASSERT(hint(profile, "q", 1) == "ch");
     FCITX_ASSERT(hint(profile, "r", 2) == "iang/uang");
     FCITX_ASSERT(hint(profile, ";", 2) == "ing");
+    std::istringstream singleFinal("方案名称=Test\nv=;\n");
+    const auto markerHints = ShuangpinProfile(singleFinal).keyHints();
+    FCITX_ASSERT(std::find(markerHints.begin(), markerHints.end(), ";") != markerHints.end());
     for (auto builtin : {ShuangpinBuiltinProfile::Ziranma, ShuangpinBuiltinProfile::MS,
          ShuangpinBuiltinProfile::Ziguang, ShuangpinBuiltinProfile::ABC,
          ShuangpinBuiltinProfile::Zhongwenzhixing, ShuangpinBuiltinProfile::PinyinJiajia,

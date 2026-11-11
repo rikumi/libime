@@ -508,6 +508,10 @@ std::vector<std::string> ShuangpinProfile::keyHints() const {
         const auto &text = PinyinEncoder::finalToString(final);
         if (text.size() > 1) hints[key].second.insert(text);
     }
+    // Keep a marker even when a custom semicolon mapping has no compound hint.
+    if (d->validInputs_.contains(';')) {
+        hints.try_emplace(';');
+    }
     const auto join = [](const std::set<std::string> &parts) {
         std::string result;
         for (const auto &part : parts) {
